@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-fxv3=@-2_h0wfhfm2cg29h9-e9ed69e2zg0zq7_4ql_l7-^4h%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['screen-recorder-z3st.onrender.com', 'LOCALHOST', '127.0.0.1']
 
 
 # Application definition
