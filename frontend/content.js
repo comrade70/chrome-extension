@@ -44,14 +44,14 @@ function sendVideoToBackend(videoBlob) {
   let formData = new FormData();
   formData.append('video', videoBlob);
 
-  fetch('https://my-backend-url.com/api/video/upload/', {
+  fetch('https://screen-recorder-z3st.onrender.com/api/upload/', {
     method: 'POST',
     body: formData
   })
   .then(response => response.json())
   .then(data => {
     let uniqueIdentifier = data.unique_identifier;
-    let videoUrl = `https://my-backend-url.com/api/video/${uniqueIdentifier}/`;
+    let videoUrl = `https://screen-recorder-z3st.onrender.com/api/recorded-screen/${uniqueIdentifier}/`;
     // videoUrl used to generate a shareable link or perform other actions
     console.log('Video uploaded. URL:', videoUrl);
   });

@@ -89,7 +89,7 @@ function saveAndGenerateLink(recordedData) {
   const formData = new FormData();
   formData.append('screen_recording', recordedData, 'screen.webm');  // 'screen_recording' should match your serializer field name
 
-  fetch('https://my-django-backend.com/api/upload/', {
+  fetch('https://screen-recorder-z3st.onrender.com/api/upload/', {
     method: 'POST',
     body: formData,
   })
