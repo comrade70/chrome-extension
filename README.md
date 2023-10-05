@@ -56,7 +56,7 @@ The extension communicates with a Django backend to store and retrieve recorded 
 
 If you want to contribute or customize the extension, follow these steps:
 
-1. Clone the [GitHub repository](https://github.com/comrade70/chrome-extension).
+1. Clone the [GitHub repository](https://github.com/comrade70/screen-recorder).
 2. Navigate to the extension folder.
 3. Modify the extension's code as needed.
 4. Load the extension in Chrome by going to `chrome://extensions/`, enabling "Developer mode," and clicking "Load unpacked." Select the extension folder.

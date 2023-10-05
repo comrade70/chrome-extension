@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('unique_id', models.CharField(max_length=100, unique=True)),
-                ('video_file', models.FileField(upload_to='screen_recorder/')),
+                ('video_file', models.FileField(upload_to='api/')),
             ],
         ),
     ]

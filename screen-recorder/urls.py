@@ -1,6 +1,6 @@
 from django.urls import path, include
 # from rest_framework.routers import DefaultRouter
-# from screen_recorder.views import APIView
+# from api.views import APIView
 from django.contrib import admin
 
 # router = DefaultRouter()
@@ -8,5 +8,5 @@ from django.contrib import admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('screen_recorder.urls')),
+    path('api/', include('api.urls')),
 ]

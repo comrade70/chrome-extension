@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('screen_recorder', '0002_recordedscreen_delete_video'),
+        ('api', '0002_recordedscreen_delete_video'),
     ]
 
     operations = [
