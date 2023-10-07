@@ -132,11 +132,12 @@ Form Data:
 
 **Response (Success):**
 ```json
-    {
+   {
     "id": 1,
-    "screen_recording": "http://localhost:8000/media/screen_recordings/1a2b3c4d.webm",
-    "audio_recording": "http://localhost:8000/media/audio_recordings/5e6f7g8h.webm",
-    "shareable_link": "1a2b3c4d"
+    "timestamp": "2023-10-07T12:48:14.226439Z",
+    "shareable_link": "132c48ac",
+    "screen_recording": "/media/screen_recordings/140987fa-b752-4426-bfef-1b8d576f8239.webm",
+    "audio_recording": "/media/screen_recordings/94b3b440-105d-4a79-a93f-bd2bedf4264b.webm"
     }
 ```
 
@@ -164,9 +165,10 @@ Form Data:
  ```json
     {
     "id": 1,
-    "screen_recording": "http://localhost:8000/media/screen_recordings/1a2b3c4d.webm",
-    "audio_recording": "http://localhost:8000/media/audio_recordings/5e6f7g8h.webm",
-    "shareable_link": "1a2b3c4d"
+    "timestamp": "2023-10-07T12:48:14.226439Z",
+    "shareable_link": "132c48ac",
+    "screen_recording": "/media/screen_recordings/140987fa-b752-4426-bfef-1b8d576f8239.webm",
+    "audio_recording": "/media/screen_recordings/94b3b440-105d-4a79-a93f-bd2bedf4264b.webm"
     }
 ```
 
