@@ -6,7 +6,7 @@ This project is the backend of a chrome extension that has ability to record scr
 1. [Introduction](#introduction)
 2. [Features](#features)
 3. [Usage](#usage)
-4. [Database Setup](database-setup)
+4. [Database Setup](#database-setup)
 5. [API Endpoints](#api-endpoints)
 6. [Testing the API](#testing-the-api)
 7. [Development](#development)
