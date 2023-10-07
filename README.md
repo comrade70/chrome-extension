@@ -156,7 +156,7 @@ Form Data:
 **Description: Retrieves recorded screen and audio data by shareable link.**
 
 
-`GET http://localhost:8000/api/recorded-screen/1a2b3c4d/`
+`GET http://localhost:8000/api/recorded-screen/132c48ac/`
 
 
 **Example Request (GET):**
