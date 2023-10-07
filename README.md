@@ -1,16 +1,18 @@
-# Screen and Audio Recording Chrome Extension Documentation
+# Screen and Audio Recording Chrome Extension Backend Documentation
+This project is the backend of a chrome extension that has ability to record screen and audio, watch the recorded screen and also generate a shareable link that may be shared with others to watch the video.
 
 ## Table of Contents
 
 1. [Introduction](#introduction)
 2. [Features](#features)
-3. [Installation](#installation)
-4. [Usage](#usage)
+3. [Usage](#usage)
+4. [Database Setup](database-setup)
 5. [API Endpoints](#api-endpoints)
-6. [Development](#development)
-7. [Troubleshooting](#troubleshooting)
-8. [Contributing](#contributing)
-9. [License](#license)
+6. [Testing the API](#testing-the-api)
+7. [Development](#development)
+8. [Troubleshooting](#troubleshooting)
+9. [Contributing](#contributing)
+10. [License](#license)
 
 ## 1. Introduction
 
@@ -23,27 +25,54 @@ The Screen and Audio Recording Chrome Extension allows you to easily record your
 - Generate shareable links for your recordings.
 - Access your recordings via the Chrome extension popup.
 
-## 3. Installation
+## 3. Usage
 
-To install the Screen and Audio Recording Chrome Extension:
+This guide provides instructions for developers to clone and set up the Chrome extension API locally for development purposes. The API serves as the backend for the Chrome extension, allowing you to test and work on various features.
 
-1. Download the extension from the Chrome Web Store (yet to be uploaded to Chrome Web Store).
-2. Click "Add to Chrome" and confirm the installation.
-3. The extension icon will appear in your Chrome toolbar.
+### Clone the Repository
 
-## 4. Usage
+1. Clone the Chrome extension API repository to your local machine:
 
-### Recording Your Screen and Audio
+   ```shell
+   git clone https://github.com/comrade70/chrome-extension.git
 
-1. Click on the extension icon in the Chrome toolbar.
-2. In the popup window, click "Start Recording" to begin recording your screen and audio.
-3. Click "Stop Recording" to stop the recording.
-4. The recorded data will be uploaded to the server, and a shareable link will be generated.
 
-### Accessing Your Recordings
+2. Navigate to the Project Directory
+    ```shell
+    cd chrome-extension-api
 
-1. Click on the extension icon in the Chrome toolbar.
-2. In the popup window, click "View Recordings" to access your recorded content.
+3. Create a Virtual Environment
+    ```shell
+    python -m venv env
+
+4. Activate the Virtual Environment
+   On Windows
+    ```shell
+    env\Scripts\activate
+
+5. Install Python Dependencies
+    ```shell
+    pip install -r requirements.txt
+
+
+## 4. Database Setup
+
+Create a database for the project.
+
+Update the database settings in screen-recorder/settings.py with yourdatabase credentials.
+
+1. Migrate the Database
+    ```shell
+    python manage.py migrate
+
+2. Create a Superuser (Admin User)
+    ```shell
+    python manage.py createsuperuser
+
+3. Run the Development Server
+    ```shell
+    python manage.py runserver
+
 
 ## 5. API Endpoints
 
@@ -52,8 +81,100 @@ The extension communicates with a Django backend to store and retrieve recorded 
 - `POST /api/upload/`: Uploads screen and audio recordings.
 - `GET /api/recorded-screen/{shareable_link}/`: Retrieves a specific recording by shareable link.
 
-## 6. Development
 
+## 6. Testing the API
+
+You can use Postman or any API testing tool to test the API endpoints.
+I have outlined the endpoints and methods available for interacting with the Chrome extension's backend API. The API provides functionality to upload and retrieve recorded screen and audio data.
+
+### Base URL
+
+- Base URL: `http://localhost:8000/api/`
+
+### Authentication
+
+- No authentication is required for testing purposes.
+
+---
+
+### Endpoints
+
+#### i. Upload Recorded Screen and Audio
+
+- **URL:** `POST /upload/`
+
+**Description:** Uploads recorded screen and audio data.
+
+**Request Body:**
+- `screen_recording` (File): The recorded screen data (Base64 encoded).
+- `audio_recording` (File): The recorded audio data (Base64 encoded).
+
+**Example Request (POST):**
+```json
+POST http://localhost:8000/api/upload/
+
+Headers:
+Content-Type: multipart/form-data
+
+Form Data:
+- screen_recording: (Select File)
+- audio_recording: (Select File)
+
+
+**Response (Success):**
+```json
+    {
+    "id": 1,
+    "screen_recording": "http://localhost:8000/media/screen_recordings/1a2b3c4d.webm",
+    "audio_recording": "http://localhost:8000/media/audio_recordings/5e6f7g8h.webm",
+    "shareable_link": "1a2b3c4d"
+    }
+
+
+**Response (Error):**
+ ```json
+    {
+    "error": "Invalid file format"
+    }
+
+
+#### ii. Retrieve Recorded Screen and Audio by Shareable Link
+
+-**URL:** `GET /recorded-screen/{shareable_link}/`
+
+**Description: Retrieves recorded screen and audio data by shareable link.**
+
+```shell
+    GET http://localhost:8000/api/recorded-screen/1a2b3c4d/
+
+
+**Example Request (GET):**
+
+**Response (Success):**
+ ```json
+    {
+    "id": 1,
+    "screen_recording": "http://localhost:8000/media/screen_recordings/1a2b3c4d.webm",
+    "audio_recording": "http://localhost:8000/media/audio_recordings/5e6f7g8h.webm",
+    "shareable_link": "1a2b3c4d"
+    }
+
+
+**Response (Error):**
+```json
+    {
+    "error": "Recorded data not found"
+    }
+
+
+### Error Handling
+The API returns appropriate HTTP status codes and error messages in case of failures. Common error codes include:
+
+400 Bad Request: Invalid request parameters.
+404 Not Found: Resource not found.
+500 Internal Server Error: Server-side errors.
+
+## 7. Development
 If you want to contribute or customize the extension, follow these steps:
 
 1. Clone the [GitHub repository](https://github.com/comrade70/screen-recorder).
@@ -62,7 +183,7 @@ If you want to contribute or customize the extension, follow these steps:
 4. Load the extension in Chrome by going to `chrome://extensions/`, enabling "Developer mode," and clicking "Load unpacked." Select the extension folder.
 5. Test your changes in Chrome.
 
-## 7. Troubleshooting
+## 8. Troubleshooting
 
 ### Issue 1: JSON Parse Error in Postman
 
@@ -74,7 +195,7 @@ If you want to contribute or customize the extension, follow these steps:
 - **Cause:** The screen or audio data is not attached correctly in the request.
 - **Solution:** Check that you've attached both screen and audio data in your Postman request.
 
-## 8. Contributing
+## 9. Contributing
 
 Contributions to this project are welcome. To contribute, please follow the [contribution guidelines](CONTRIBUTING.md) in the project repository.
 
